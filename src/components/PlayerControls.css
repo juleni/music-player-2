@@ -1,13 +1,13 @@
 .c-player--controls {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 30px;
 }
 
 .c-player--controls .play-btn {
   display: flex;
-  margin: 0 30px;
+
   padding: 20px;
   border-radius: 50%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8),
@@ -22,11 +22,30 @@
   cursor: pointer;
 }
 
-.c-player--controls .skip-btn {
+.c-player--controls .control-btn {
   background: none;
   border: none;
   outline: none;
   color: #888;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
+}
+
+.control-btn .tooltiptext {
+  font-size: 15px;
+  visibility: hidden;
+  width: 70px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.control-btn:hover .tooltiptext {
+  visibility: visible;
 }
