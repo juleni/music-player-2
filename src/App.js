@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Player from "./components/Player";
 
 function App() {
-  const [songs, setSongs] = useState([
+  const [songs] = useState([
     {
       title: "Yesterday",
       artist: "The Beatles",
@@ -39,11 +39,22 @@ function App() {
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+
+  useEffect(() => {
+    setNextSongIndex(() => {
+      if (currentSongIndex + 1 > songs.length - 1) {
+        return 0;
+      } else return currentSongIndex + 1;
+    });
+  }, [currentSongIndex]);
+
   return (
     <div className="App">
       <Player
-        song={songs[currentSongIndex]}
-        nextSong={songs[nextSongIndex]}
+        currentSongIndex={currentSongIndex}
+        setCurrentSongIndex={setCurrentSongIndex}
+        nextSongIndex={nextSongIndex}
+        songs={songs}
       ></Player>
     </div>
   );
