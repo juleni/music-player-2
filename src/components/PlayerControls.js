@@ -15,11 +15,11 @@ export default function PlayerControls(props) {
     <div className="c-player--controls">
       <button className="control-btn" onClick={() => props.SetSong(0)}>
         <FontAwesomeIcon icon={faRepeat} />
-        <span class="tooltiptext">Repeat</span>
+        <span className="tooltiptext">Repeat</span>
       </button>
       <button className="control-btn" onClick={() => props.SetSong(1)}>
         <FontAwesomeIcon icon={faBackwardStep} />
-        <span class="tooltiptext">Previous</span>
+        <span className="tooltiptext">Previous</span>
       </button>
       <button
         className="play-btn"
@@ -29,11 +29,11 @@ export default function PlayerControls(props) {
       </button>
       <button className="control-btn" onClick={() => props.SetSong(2)}>
         <FontAwesomeIcon icon={faForwardStep} />
-        <span class="tooltiptext">Next</span>
+        <span className="tooltiptext">Next</span>
       </button>
       <button className="control-btn" onClick={() => props.SetSong(3)}>
         <FontAwesomeIcon icon={faShuffle} />
-        <span class="tooltiptext">Shuffle</span>
+        <span className="tooltiptext">Shuffle</span>
       </button>
     </div>
   );

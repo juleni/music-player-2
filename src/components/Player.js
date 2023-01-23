@@ -5,8 +5,8 @@ import PlayerDetails from "./PlayerDetails";
 
 export default function Player(props) {
   const REPEAT_SONG = 0;
-  const FORWARD_SONG = 1;
-  const BACKWARD_SONG = 2;
+  const BACKWARD_SONG = 1;
+  const FORWARD_SONG = 2;
   const RANDOM_SONG = 3;
 
   const audioRef = useRef(null);
@@ -26,22 +26,22 @@ export default function Player(props) {
         audioRef.current.currentTime = 0;
         audioRef.current.play();
         break;
-      case FORWARD_SONG:
-        props.setCurrentSongIndex(() => {
-          let temp = props.currentSongIndex;
-          temp++;
-          if (temp > props.songs.length - 1) {
-            temp = 0;
-          }
-          return temp;
-        });
-        break;
       case BACKWARD_SONG:
         props.setCurrentSongIndex(() => {
           let temp = props.currentSongIndex;
           temp--;
           if (temp < 0) {
             temp = props.songs.length - 1;
+          }
+          return temp;
+        });
+        break;
+      case FORWARD_SONG:
+        props.setCurrentSongIndex(() => {
+          let temp = props.currentSongIndex;
+          temp++;
+          if (temp > props.songs.length - 1) {
+            temp = 0;
           }
           return temp;
         });
