@@ -1,18 +1,26 @@
 .c-player {
   width: 340px;
-  height: 680px;
+  height: 660px;
   display: block;
   background-color: #313131;
   padding: 40px;
-  padding-top: 50px;
+  padding-top: 40px;
   border-radius: 16px;
   box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.8),
     inset 6px 6px 12px rgba(255, 255, 255, 0.4);
 }
 
-.c-player > h4 {
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #aaa;
+}
+
+span > h4 {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
@@ -38,13 +46,16 @@
   bottom: 0;
   margin: auto;
   /** background-color: rgba(0, 0, 0, 0.5); */
+  z-index: 1;
 }
 
-.loading {
-  display: flex;
+.message {
+  display: block;
+  text-align: center;
   align-items: center;
   justify-content: center;
-  margin-top: 150px;
+
+  margin-top: -20px;
   padding: 30px;
   background-color: #e9e8e5;
   border-radius: 15px;
@@ -53,4 +64,15 @@
 
   box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
     -4px -4px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.info-text {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.author-text {
+  margin-top: 30px;
+  font-size: 12px;
 }

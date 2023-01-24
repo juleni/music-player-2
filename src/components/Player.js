@@ -1,3 +1,5 @@
+import { faBars, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import "./Player.css";
 import PlayerControls from "./PlayerControls";
@@ -12,6 +14,7 @@ export default function Player(props) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showMessage, setShowMessage] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     if (isPlaying) {
@@ -78,9 +81,11 @@ export default function Player(props) {
   };
 
   function handleLoadedData() {
-    console.log("0 handle ... showMessage = " + showMessage);
     setShowMessage(false);
-    console.log("1 handle ... showMessage = " + showMessage);
+  }
+
+  function toggleShowInfo() {
+    setShowInfo(!showInfo);
   }
 
   return (
@@ -90,11 +95,41 @@ export default function Player(props) {
         ref={audioRef}
         onLoadedData={handleLoadedData}
       ></audio>
-      <h4>ᔕIᗰᑭᒪE ᗰᑌᔕIᑕ ᑭᒪᗩYEᖇ</h4>
+      <div className="top-bar">
+        <span className="info" onClick={toggleShowInfo}>
+          <FontAwesomeIcon icon={faInfo} />
+        </span>
+        <span>
+          <h4>ᔕIᗰᑭᒪE ᗰᑌᔕIᑕ ᑭᒪᗩYEᖇ</h4>
+        </span>
+        <span className="menu">
+          <FontAwesomeIcon icon={faBars} />
+        </span>
+      </div>
+      {showInfo && (
+        <div className="loading-wrapper" onClick={toggleShowInfo}>
+          <div className="message">
+            <p>Simple Music Player v0.1</p>
+            <p className="info-text">
+              Music from{" "}
+              <a href="https://www.allesgemafrei.de/en/" target="_blank">
+                AllesGemaFrei
+              </a>
+            </p>
+            <p className="author-text">
+              2023, Created by{" "}
+              <a href="https://github.com/juleni" target="_blank">
+                JULENI
+              </a>
+            </p>
+          </div>
+        </div>
+      )}
+
       <PlayerDetails song={props.songs[props.currentSongIndex]} />
       {showMessage && (
         <div className="loading-wrapper">
-          <div className="loading">Loading song ...</div>
+          <div className="message">Loading song ...</div>
         </div>
       )}
 
