@@ -22,6 +22,7 @@ export default function Player(props) {
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
   const [barWidth, setBarWidth] = useState("0%");
+  const [isRandomSong, setIsRandomSong] = useState(false);
 
   useEffect(() => {
     if (isPlaying) {
@@ -67,21 +68,26 @@ export default function Player(props) {
         });
         break;
       case RANDOM_SONG:
-        const randomIndex = Math.floor(Math.random() * props.songs.length);
-        setShowMessage(true);
-        props.setCurrentSongIndex(() => {
-          let temp = props.currentSongIndex;
-          if (temp === randomIndex) {
-            if (temp === 0) {
-              temp = props.songs.length - 1;
-            } else if (temp === props.songs.length - 1) {
-              temp = 0;
-            } else {
-              temp = randomIndex + 1;
-            }
-          } else temp = randomIndex;
-          return temp;
-        });
+        if (isRandomSong) {
+          // process random song only in case when "shuffle button"
+          // is not highlighted as random
+          const randomIndex = Math.floor(Math.random() * props.songs.length);
+          setShowMessage(true);
+          props.setCurrentSongIndex(() => {
+            let temp = props.currentSongIndex;
+            if (temp === randomIndex) {
+              if (temp === 0) {
+                temp = props.songs.length - 1;
+              } else if (temp === props.songs.length - 1) {
+                temp = 0;
+              } else {
+                temp = randomIndex + 1;
+              }
+            } else temp = randomIndex;
+            // console.log("generated RandomSong = " + temp);
+            return temp;
+          });
+        }
         break;
 
       default:
@@ -95,7 +101,7 @@ export default function Player(props) {
   function handleLoadedData() {
     let musicDuration = audioRef.current.duration;
     setSongDuration(musicDuration);
-    console.log(audioRef);
+    // console.log(audioRef);
     //progressBarRef.current.style.width = "0%";
     setShowMessage(false);
   }
@@ -109,9 +115,6 @@ export default function Player(props) {
    */
   function handleTimeUpdate() {
     const currentTime = audioRef.current.currentTime;
-    console.log("handleTimeUpdate");
-    console.log("songCurrentTime = " + currentTime);
-    console.log("songDuration = " + songDuration);
     let barWidth = (currentTime / songDuration) * 100;
     setBarWidth(barWidth + "%");
     setSongCurrentTime(currentTime);
@@ -121,8 +124,9 @@ export default function Player(props) {
    * Handler function for End of the song
    */
   function handleEnded() {
-    // set next song
-    SetSong();
+    if (isRandomSong) {
+      SetSong(RANDOM_SONG);
+    } else SetSong();
   }
 
   return (
@@ -187,9 +191,12 @@ export default function Player(props) {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         SetSong={SetSong}
+        isRandomSong={isRandomSong}
+        setIsRandomSong={setIsRandomSong}
       />
       <p>
-        <strong>Next up:</strong> {props.songs[props.nextSongIndex].title}
+        <strong>Next up:</strong>{" "}
+        {isRandomSong ? "Random song" : props.songs[props.nextSongIndex].title}
       </p>
     </div>
   );

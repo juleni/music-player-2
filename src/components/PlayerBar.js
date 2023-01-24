@@ -16,14 +16,10 @@ export default function PlayerBar(props) {
 
   function handleProgressDetailsClick(e) {
     e.preventDefault();
-    console.log("handleProgressDetailsClick");
-    console.log(e);
     // Get width of progress bar
     let progressTotalWidth = progressDetailsRef.current.clientWidth;
     // Get actual clicked offset X of progress bar
     let clickedOffsetX = e.nativeEvent.offsetX;
-    console.log("clickedOffsetX = " + clickedOffsetX);
-    console.log("props.barWidth = " + props.barWidth);
     // Get total music duration
     let musicDuration = props.songDuration;
 
@@ -36,18 +32,9 @@ export default function PlayerBar(props) {
     props.setBarWidth(barWidth + "%");
     props.progressBarRef.current.style.width = barWidth;
     props.audioRef.current.currentTime = currentTime;
-    console.log(
-      "props.progressBarRef.current.style.width = " +
-        props.progressBarRef.current.style.width
-    );
   }
 
-  function handleProgressDetailsUpdate(e) {
-    e.preventDefault();
-    console.log("handleProgressDetailsUpdate");
-    console.log(e);
-  }
-
+  // Update progress bar when song time is changed
   useEffect(() => {
     props.progressBarRef.current.style.width = props.barWidth;
   }, [props.songCurrentTime]);

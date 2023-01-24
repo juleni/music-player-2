@@ -8,15 +8,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import {
-  BACKWARD_SONG,
-  FORWARD_SONG,
-  RANDOM_SONG,
-  REPEAT_SONG,
-} from "../utils/constants";
+import { BACKWARD_SONG, FORWARD_SONG, REPEAT_SONG } from "../utils/constants";
 import "./PlayerControls.css";
 
 export default function PlayerControls(props) {
+  function handleRandomSongClick() {
+    props.setIsRandomSong(!props.isRandomSong);
+    //props.SetSong(RANDOM_SONG);
+  }
+
   return (
     <div className="c-player--controls">
       <button
@@ -47,8 +47,8 @@ export default function PlayerControls(props) {
         <span className="tooltiptext">Next</span>
       </button>
       <button
-        className="control-btn"
-        onClick={() => props.SetSong(RANDOM_SONG)}
+        className={!props.isRandomSong ? "control-btn " : "control-btn active"}
+        onClick={handleRandomSongClick}
       >
         <FontAwesomeIcon icon={faShuffle} />
         <span className="tooltiptext">Shuffle</span>

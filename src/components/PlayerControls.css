@@ -23,6 +23,12 @@
   position: relative;
 }
 
+.play-btn:active {
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.4),
+    -2px -2px 5px rgba(0, 0, 0, 0.4), 2px 2px 5px rgba(255, 255, 255, 0.4);
+}
+
 .c-player--controls .control-btn {
   background: none;
   border-radius: 50%;
@@ -58,6 +64,10 @@
 
 .control-btn:active {
   color: #ffce00;
+}
+
+.active {
+  color: #ffce00 !important;
 }
 
 .tooltiptext::after {
