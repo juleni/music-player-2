@@ -11,6 +11,7 @@ export default function Player(props) {
 
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showMessage, setShowMessage] = useState(true);
 
   useEffect(() => {
     if (isPlaying) {
@@ -23,20 +24,25 @@ export default function Player(props) {
   const SetSong = (forwards = FORWARD_SONG) => {
     switch (forwards) {
       case REPEAT_SONG:
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        if (isPlaying) {
+          audioRef.current.currentTime = 0;
+          audioRef.current.play();
+        }
         break;
       case BACKWARD_SONG:
+        setShowMessage(true);
         props.setCurrentSongIndex(() => {
           let temp = props.currentSongIndex;
           temp--;
           if (temp < 0) {
             temp = props.songs.length - 1;
           }
+          console.log("SETSONG BACK ... showMessage = " + showMessage);
           return temp;
         });
         break;
       case FORWARD_SONG:
+        setShowMessage(true);
         props.setCurrentSongIndex(() => {
           let temp = props.currentSongIndex;
           temp++;
@@ -45,9 +51,11 @@ export default function Player(props) {
           }
           return temp;
         });
+        console.log("SETSONG FORW ... showMessage = " + showMessage);
         break;
       case RANDOM_SONG:
         const randomIndex = Math.floor(Math.random() * props.songs.length);
+        setShowMessage(true);
         props.setCurrentSongIndex(() => {
           let temp = props.currentSongIndex;
           if (temp === randomIndex) {
@@ -59,6 +67,7 @@ export default function Player(props) {
               temp = randomIndex + 1;
             }
           } else temp = randomIndex;
+          console.log("SETSONG RAND ... showMessage = " + showMessage);
           return temp;
         });
         break;
@@ -68,22 +77,34 @@ export default function Player(props) {
     }
   };
 
+  function handleLoadedData() {
+    console.log("0 handle ... showMessage = " + showMessage);
+    setShowMessage(false);
+    console.log("1 handle ... showMessage = " + showMessage);
+  }
+
   return (
     <div className="c-player">
       <audio
         src={props.songs[props.currentSongIndex].audio_src}
         ref={audioRef}
+        onLoadedData={handleLoadedData}
       ></audio>
       <h4>ᔕIᗰᑭᒪE ᗰᑌᔕIᑕ ᑭᒪᗩYEᖇ</h4>
       <PlayerDetails song={props.songs[props.currentSongIndex]} />
+      {showMessage && (
+        <div className="loading-wrapper">
+          <div className="loading">Loading song ...</div>
+        </div>
+      )}
+
       <PlayerControls
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         SetSong={SetSong}
       />
       <p>
-        <strong>Next up:</strong> {props.songs[props.nextSongIndex].title} by{" "}
-        {props.songs[props.nextSongIndex].artist}
+        <strong>Next up:</strong> {props.songs[props.nextSongIndex].title}
       </p>
     </div>
   );
