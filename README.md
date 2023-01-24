@@ -1,6 +1,10 @@
 # Simple Music Player
 
-# Getting Started with Create React App
+- v0.1 - Initial release (basic functionality)
+
+## Available demo: https://juleni.github.io/music-player-2/
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
