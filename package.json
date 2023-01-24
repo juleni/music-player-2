@@ -11,7 +11,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
-  "homepage": "https://juleni.github.io/simple-music-player/",
+  "homepage": "https://juleni.github.io/music-player-2/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
