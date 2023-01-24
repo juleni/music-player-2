@@ -1,12 +1,12 @@
 .c-player--details .details-img {
   position: relative;
   width: fit-content;
-  margin: 40px auto;
+  margin: 30px auto;
 }
 
 .c-player--details .details-img img {
   display: block;
-  margin: 40px auto;
+  margin: 30px auto;
   width: 250px;
   border-radius: 30%;
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
@@ -15,11 +15,11 @@
 
 .c-player--details .details-title {
   color: #eee;
-  font-size: 28px;
+  font-size: 24px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
     -2px -2px 4px rgba(255, 255, 255, 0.4);
   text-align: center;
-  margin-bottom: 10px;
+  min-height: 65px;
 }
 
 .c-player--details .details-artist {
