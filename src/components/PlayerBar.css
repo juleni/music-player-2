@@ -1,0 +1,46 @@
+.c-player--bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.progress-details {
+  width: 100%;
+  height: 6px;
+  border-radius: 15px;
+  background-color: #888;
+}
+
+.progress-bar {
+  width: 0%;
+  height: inherit;
+  border-radius: inherit;
+  background-color: #ffce00;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #ffce00;
+  border-radius: inherit;
+  transform: translateY(-25%);
+  right: -5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.progress-details:hover .progress-bar span {
+  opacity: 1;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  color: #dfdbdb;
+  font-size: 14px;
+}

@@ -1,20 +1,27 @@
 import { faBars, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
+import {
+  BACKWARD_SONG,
+  FORWARD_SONG,
+  RANDOM_SONG,
+  REPEAT_SONG,
+} from "../utils/constants";
 import "./Player.css";
+import PlayerBar from "./PlayerBar";
 import PlayerControls from "./PlayerControls";
 import PlayerDetails from "./PlayerDetails";
 
 export default function Player(props) {
-  const REPEAT_SONG = 0;
-  const BACKWARD_SONG = 1;
-  const FORWARD_SONG = 2;
-  const RANDOM_SONG = 3;
+  const progressBarRef = useRef(null);
 
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showMessage, setShowMessage] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
+  const [songDuration, setSongDuration] = useState(0);
+  const [songCurrentTime, setSongCurrentTime] = useState(0);
+  const [barWidth, setBarWidth] = useState("0%");
 
   useEffect(() => {
     if (isPlaying) {
@@ -24,6 +31,11 @@ export default function Player(props) {
     }
   });
 
+  /**
+   * Set cuttent song index based on control button pressed
+   * @param {REPEAT_SONG, BACKWARD_SONG, FORWARD_SONG, RANDOM_SONG} forwards
+   * @returns
+   */
   const SetSong = (forwards = FORWARD_SONG) => {
     switch (forwards) {
       case REPEAT_SONG:
@@ -40,7 +52,6 @@ export default function Player(props) {
           if (temp < 0) {
             temp = props.songs.length - 1;
           }
-          console.log("SETSONG BACK ... showMessage = " + showMessage);
           return temp;
         });
         break;
@@ -54,7 +65,6 @@ export default function Player(props) {
           }
           return temp;
         });
-        console.log("SETSONG FORW ... showMessage = " + showMessage);
         break;
       case RANDOM_SONG:
         const randomIndex = Math.floor(Math.random() * props.songs.length);
@@ -70,7 +80,6 @@ export default function Player(props) {
               temp = randomIndex + 1;
             }
           } else temp = randomIndex;
-          console.log("SETSONG RAND ... showMessage = " + showMessage);
           return temp;
         });
         break;
@@ -80,12 +89,40 @@ export default function Player(props) {
     }
   };
 
+  /**
+   * Handler function for loaded song
+   */
   function handleLoadedData() {
+    let musicDuration = audioRef.current.duration;
+    setSongDuration(musicDuration);
+    console.log(audioRef);
+    //progressBarRef.current.style.width = "0%";
     setShowMessage(false);
   }
 
   function toggleShowInfo() {
     setShowInfo(!showInfo);
+  }
+
+  /**
+   * Handler function for song time update
+   */
+  function handleTimeUpdate() {
+    const currentTime = audioRef.current.currentTime;
+    console.log("handleTimeUpdate");
+    console.log("songCurrentTime = " + currentTime);
+    console.log("songDuration = " + songDuration);
+    let barWidth = (currentTime / songDuration) * 100;
+    setBarWidth(barWidth + "%");
+    setSongCurrentTime(currentTime);
+  }
+
+  /**
+   * Handler function for End of the song
+   */
+  function handleEnded() {
+    // set next song
+    SetSong();
   }
 
   return (
@@ -94,6 +131,8 @@ export default function Player(props) {
         src={props.songs[props.currentSongIndex].audio_src}
         ref={audioRef}
         onLoadedData={handleLoadedData}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
       ></audio>
       <div className="top-bar">
         <span className="info" onClick={toggleShowInfo}>
@@ -132,6 +171,17 @@ export default function Player(props) {
           <div className="message">Loading song ...</div>
         </div>
       )}
+
+      <PlayerBar
+        songDuration={songDuration}
+        songCurrentTime={songCurrentTime}
+        song={props.songs[props.currentSongIndex]}
+        setSongCurrentTime={setSongCurrentTime}
+        audioRef={audioRef}
+        barWidth={barWidth}
+        progressBarRef={progressBarRef}
+        setBarWidth={setBarWidth}
+      />
 
       <PlayerControls
         isPlaying={isPlaying}
