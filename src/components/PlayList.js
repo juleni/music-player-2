@@ -57,4 +57,100 @@ export const PLAYLIST = [
     audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/613.mp3",
     genre: GENRES.POP,
   },
+  {
+    title: "Breezy Summer Day",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/breezysummer.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/422.mp3",
+    genre: GENRES.POP,
+  },
+  {
+    title: "Quick Start",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/quickstart.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/572.mp3",
+    genre: GENRES.POP,
+  },
+  {
+    title: "Cradle of the Sea",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/cradleofthesea.png",
+    audio_src: "https://www.allesgemafrei.de/previews/652.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "Deep Blue",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/deep_blue.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/645.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "Les couleurs de l'automne",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/Les%20couleurs%20de%20l'automne.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/630.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "The Quiet Of The Evening",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/thequietoftheevening.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/612.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "The Blue Hour",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/thebluehour.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/667.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "Once Is Not Enough",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/onceisnotenough.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/502.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "Bicycle Day",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/bicycleday.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/501.mp3",
+    genre: GENRES.NEW_AGE,
+  },
+  {
+    title: "This Beautiful Place",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/thisbeautifulplace.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/679.mp3",
+    genre: GENRES.REGGAE,
+  },
+  {
+    title: "Green Vegetable",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/greenvegetable.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/629.mp3",
+    genre: GENRES.REGGAE,
+  },
+  {
+    title: "African Children",
+    artist: "Unknown Artist",
+    img_src:
+      "https://www.allesgemafrei.de/images/product_images/info_images/africanchildren.png",
+    audio_src: "https://www.allesgemafrei.de/previews/Demo-Download/604.mp3",
+    genre: GENRES.REGGAE,
+  },
 ];
