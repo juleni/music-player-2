@@ -7,8 +7,10 @@ export default function PlayerDetails(props) {
       <div className="details-img">
         <img src={props.song.img_src} alt=""></img>
       </div>
-      <h3 className="details-title">{props.song.title}</h3>
-      <h4 className="details-artist">{props.song.artist}</h4>
+      <div className="details-wrapper">
+        <h3 className="details-title">{props.song.title}</h3>
+        <h4 className="details-artist">{props.song.artist}</h4>
+      </div>
     </div>
   );
 }

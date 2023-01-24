@@ -19,7 +19,11 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
     -2px -2px 4px rgba(255, 255, 255, 0.4);
   text-align: center;
-  min-height: 65px;
+  margin-bottom: 5px;
+}
+
+.c-player--details .details-wrapper {
+  min-height: 115px;
 }
 
 .c-player--details .details-artist {
