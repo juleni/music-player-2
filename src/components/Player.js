@@ -84,7 +84,7 @@ export default function Player(props) {
                 temp = randomIndex + 1;
               }
             } else temp = randomIndex;
-            // console.log("generated RandomSong = " + temp);
+            console.log("generated RandomSong = " + temp);
             return temp;
           });
         }
